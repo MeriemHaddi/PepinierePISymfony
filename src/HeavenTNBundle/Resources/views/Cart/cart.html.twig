@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div id="checkout-cart" class="container">
+
+        <div class="row">
+            <div id="content" class="col-sm-12">
+
+                <form method="POST" enctype="multipart/form-data" class="cart-form">
+                    <div class="table-responsive">
+                        <table id="myTable" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td class="text-center">ID</td>
+                                <td class="text-center">Image</td>
+                                <td class="text-left">Product Name</td>
+                                <td class="text-left">Quantity</td>
+                                <td class="text-right">Unit Price</td>
+                                <td class="text-right">Price</td>
+                                <td class="text-left">Action</td>
+
+
+                            </tr>
+                            </thead>
+
+                            {% for cart in carts  %}
+
+                                <tbody class="cart-row">
+                                <tr>
+                                    <td class="text-left">{{ cart.id }}"</td>
+
+                                    <td class="text-center">
+                                        <img src="{{ cart.product.productimage }}" style="width: 80px; height: 140px" alt="aspetur autodit autfugit" title="aspetur autodit autfugit" class="img-thumbnail"></td>
+                                    <td class="text-left">{{cart.product.productname }}</td>
+                                        <br>
+
+                                    <td>
+                                        <div class="form-group--number">
+
+                                                <input type="number" data-id="97" data-price="30"  value="" class="quant" min="1"  name="quantite"/>
+                                                <input type="submit" value="add">
+
+
+                                    <td class="text-right price" data-price="{{ cart.product.price }}">{{ cart.product.price }}</td>
+                                    <td class="text-right amount">30</td>
+
+                                    </div>
+                                    </td>
+
+                                    <td class="text-left"><div class="cart_input_block input-group btn-block" style="max-width: 200px;">
+                                            <a id="remove" href="{{ path('_cupcakes_cart_remove',{id:cart.id }) }}"> Remove</a>
+                                    </td>
+
+
+                                </tr>
+
+
+                    </tbody>
+
+                            {% endfor %}
+
+                    <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right"><b>Total:</b></td>
+                        <td id="test" class="text-right total">@Model.Cart.ComputeTotalValue().ToString("#.## DT")</td>
+                    </tr>
+                    </tfoot>
+
+                        </table>
+
+                    </div>
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-4 sub-total-table">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+
+
+                            </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <div class="pull-right"> <a  href="{{ path('commande_total')}}" class="btn btn-default cnt">Checkout</a></div>
+
+                    <div class="pull-left"><a href="{{ path('productfront_index') }}" class="btn btn-default cnt">Continue Shopping</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ asset('jquery.js') }}"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('[id="remove"]').on('click', function(e) {
+                location.reload();
+                var href = this.href;
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: href,
+                    dataType: 'json',
+                    success: function(json) {
+
+                        console.log(json);
+                    }
+                });
+            });
+        });
+
+
+        $(document).ready(function() {
+            update();
+            $(".quant").change(function() {
+                //this: context of the input that was changed
+                console.log('calling /Cart/AddTocart; id:',$(this).attr('data-id'),' quantity: ', $(this).val());
+                $.get(
+                    '/Cart/AddTocart', {
+                        id: $(this).attr('data-id'),
+                        returnUrl: '',
+                        quantity: $(this).val()
+                    });
+                update();
+            });
+
+            function update() {
+                var sum = 0.0;
+                var quantity;
+                $('#myTable > tbody  > tr').each(function() {
+
+                    quantity = $(this).find('.quant').val();
+                    var price = parseFloat($(this).find('.price').attr('data-price').replace(',', '.'));
+                    var amount = (quantity * price);
+
+                    sum += amount;
+                    $(this).find('.amount').text('' + amount + ' DT');
+                });
+                $('.total').text(sum + ' DT');
+            }
+
+
+        });
+
+
+
+
+
+    </script>
+
+{% endblock %}
+

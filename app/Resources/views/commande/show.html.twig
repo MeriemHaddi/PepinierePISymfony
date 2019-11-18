@@ -1,0 +1,46 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+    <h1>Commande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>User</th>
+                <td>{{ commande.Client }}</td>
+            </tr>
+            <tr>
+                <th>Order ID</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ commande.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ commande.price }} TD</td>
+            </tr>
+            <tr>
+                <th>Order Date</th>
+                <td>{{ commande.date|date }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+
+        <ul>
+            <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="margin-left: 5px">
+                <a href="{{ path('commande_index') }}"style="color: white">Back to the list</a></button>
+
+
+            <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="margin-left: 5px; background-color: #0b7ec4" ><a href="{{ path('commande_approve', {'id':commande.id}) }}" style="color: white">Approve</a></button>
+            <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="margin-left: 5px; background-color: red; border-color:red"> <a href="{{ path('commande_ignore', {'id':commande.id}) }}" style="color: white">Ignore</a></button>
+
+
+
+        </ul>
+    </ul>
+{% endblock %}

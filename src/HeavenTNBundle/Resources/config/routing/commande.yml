@@ -1,0 +1,47 @@
+commande_index:
+    path:     /
+    defaults: { _controller: "HeavenTNBundle:Commande:index" }
+    methods:  GET
+
+commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "HeavenTNBundle:Commande:show" }
+    methods:  GET
+
+commande_new:
+    path:     /new
+    defaults: { _controller: "HeavenTNBundle:Commande:new" }
+    methods:  [GET, POST]
+
+commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HeavenTNBundle:Commande:edit" }
+    methods:  [GET, POST]
+commande_total:
+    path:     /total
+    defaults: { _controller: "HeavenTNBundle:Commande:total" }
+
+commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HeavenTNBundle:Commande:delete" }
+    methods:  DELETE
+
+commande_approve:
+    path:     /{id}/approve
+    defaults: { _controller: "HeavenTNBundle:Commande:approve" }
+    methods:  [GET, POST]
+
+commande_ignore:
+    path:     /{id}/ignore
+    defaults: { _controller: "HeavenTNBundle:Commande:ignore" }
+    methods:  [GET, POST]
+
+
+commande_sort:
+    path:     /sort/{sort}
+    defaults: { _controller: "HeavenTNBundle:Commande:sort" }
+    methods:  GET
+
+pdf:
+    path:     /pdf
+    defaults: { _controller: "HeavenTNBundle:Commande:pdf" }

@@ -1,0 +1,60 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+<div class="card-body">
+    <h4 class="card-title">Promotion List</h4>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col">Action</th>
+
+
+
+
+
+
+            </tr>
+            </thead>
+
+            {% for promotion in promotions %}
+            <tr>
+                <td><a href="{{ path('promotion_show', { 'id': promotion.id }) }}">{{ promotion.id }}</a></td>
+                <td>{{ promotion.discount }}</td>
+                <td>{% if promotion.startingDate %}{{ promotion.startingDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if promotion.endingDate %}{{ promotion.endingDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ promotion.statut }}</td>
+
+
+                <td>
+                    <ul>
+
+                        <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="float:none!important;display:inline;">
+                            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}" style="color: white">Edit</a>
+
+
+                        </button>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+        </li>
+    </ul>
+{% endblock %}
+
+
+
+
+

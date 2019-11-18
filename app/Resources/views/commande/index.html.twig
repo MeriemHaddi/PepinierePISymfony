@@ -1,0 +1,53 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+<title>Orders</title>
+</head>
+<body>
+<center>
+    <div class="card-body">
+        <h4 class="card-title">Order List</h4>
+        <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="float:none!important;display:inline;" ><a href="{{ path('commande_sort',{'sort':'ASC'}) }}" style="color: white">Sort Price ASC</a></button>
+        <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="float:none!important;display:inline;" >    <a href="{{ path('commande_sort',{'sort':'DESC'}) }}"style="color: white">Sort Price DESC</a></button>        <div class="table-responsive">
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for commande in commandes %}
+                    <tr>
+                        <td>{{ commande.Client }}</td>
+                        <td>{{ commande.id }}</a></td>
+                        <td>{{ commande.quantity }}</td>
+                        <td>{{ commande.price }}</td>
+
+                        <td>{% if commande.date %}{{ commande.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ commande.status }}</td>
+
+                        <td>
+                            <button class="btn btn-info btn-rounded m-t-10 mb-2 float-right" data-target="#add-contact" data-toggle="modal" type="button" style="float:none!important;display:inline;">
+                                <a href="{{ path('commande_show', { 'id': commande.id }) }}" style="color: white">Show</a>
+
+                                <a href="{{ path('pdf') }}" class="btn btn-inverse"><div class="fa fa-file-pdf-o"></div> Extrait PDF</a>
+                            </button>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+
+                {% endblock %}
+

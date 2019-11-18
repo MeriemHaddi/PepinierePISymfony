@@ -1,0 +1,92 @@
+<?php
+
+namespace HeavenTNBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+
+/**
+ * Product
+ *
+ * @ORM\Table(name="product")
+ * @ORM\Entity
+ */
+class Product
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idproduct", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idproduct;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="productname", type="string", length=45, nullable=true)
+     */
+    private $productname;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $price;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantite", type="integer", precision=10, scale=0, nullable=true)
+     */
+    private $quantite;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="minAlert", type="integer", precision=10, scale=0, nullable=true)
+     */
+    private $minAlert;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=45, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="productimage", type="string", length=255, nullable=true)
+     */
+    private $productimage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="promotext", type="string", nullable=true)
+     */
+    private $promotext;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="stockstate", type="string", nullable=true)
+     */
+    private $stockstate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category",referencedColumnName="id")
+     */
+    private $category;
+
+
+
+}

@@ -1,0 +1,163 @@
+heaven_tn_product:
+    resource: "@HeavenTNBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
+heaven_tn_promotion:
+    resource: "@HeavenTNBundle/Resources/config/routing/promotion.yml"
+    prefix:   /promotion
+
+heaven_tn_cateogry:
+    resource: "@HeavenTNBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+heaven_tn_claim:
+    resource: "@HeavenTNBundle/Resources/config/routing/claim.yml"
+    prefix:   /claim
+
+
+heaven_tn_review:
+    resource: "@HeavenTNBundle/Resources/config/routing/review.yml"
+    prefix:   /review
+
+heaven_tn_commande:
+    resource: "@HeavenTNBundle/Resources/config/routing/commande.yml"
+    prefix:   /commande
+
+heaven_tn_homepage:
+    path:     /
+    defaults: { _controller: HeavenTNBundle:Default:index }
+
+
+afficher_event:
+    path:     /afficherEvent
+    defaults: { _controller: HeavenTNBundle:GestionEvent:afficherEvent }
+
+afficher_eventfront:
+    path:     /afficherEventfront
+    defaults: { _controller: HeavenTNBundle:GestionEvent:afficherFrontEvent }
+
+_Reserver_event:
+    path:     /ReserverEvent/{idevent}
+    defaults: { _controller: HeavenTNBundle:GestionEvent:reserver }
+
+
+archiver_event:
+    path:     /archiverEvent
+    defaults: { _controller: HeavenTNBundle:GestionEvent:archiver }
+
+
+event_sort:
+    path:     /sort/{sort}
+    defaults: { _controller: "HeavenTNBundle:GestionEvent:sort" }
+    methods:  GET
+
+
+
+ajouter_event:
+    path:     /ajouterEvent
+    defaults: { _controller: HeavenTNBundle:GestionEvent:ajouterEvent }
+
+supprimer_event:
+    path:     /supprimerEvent/{idevent}
+    defaults: { _controller: HeavenTNBundle:GestionEvent:supprimerEvent }
+
+modifier_event:
+    path:     /modifierEvent/{idevent}
+    defaults: { _controller: HeavenTNBundle:GestionEvent:modifierEvent }
+
+rechercher_event:
+    path:     /rechercherEvent
+    defaults: { _controller: HeavenTNBundle:GestionEvent:rechercherEvent }
+
+_cupcakes_cart_add:
+    path:     /add_to_cart/{id}
+    defaults: { _controller: HeavenTNBundle:Cart:addToCart }
+_cupcakes_cart_remove:
+    path:     /remove_cart/{id}
+    defaults: { _controller: HeavenTNBundle:Cart:removeFromCart }
+
+_cupcakes_cart:
+    path:     /Cart
+    defaults: { _controller: HeavenTNBundle:Cart:showCart }
+
+_cupcakes_commandeadmin:
+    path:     /CommandeAmdin
+    defaults: { _controller: HeavenTNBundle:Cart:commandeadmin }
+afficherCartM:
+    path:     /CartM
+    defaults: { _controller: HeavenTNBundle:Mobile:showCartM }
+ajouter_cartM:
+    path:     /CartM/new
+    defaults: { _controller: HeavenTNBundle:Mobile:new }
+supprimer_cartM:
+    path:     /CartM/remove/{id}
+    defaults: { _controller: HeavenTNBundle:Mobile:removeFromCartM }
+afficherCommande:
+    path:     /Cmd
+    defaults: { _controller: HeavenTNBundle:Mobile:afficherCommande }
+
+ajouterCommande:
+    path:     /Cmd/new
+    defaults: { _controller: HeavenTNBundle:Mobile:ajouterCommande }
+
+Prod:
+    path:     /Prod
+    defaults: { _controller: HeavenTNBundle:Mobile:Prod }
+FindProd:
+    path:     /Prod/{id}
+    defaults: { _controller: HeavenTNBundle:Mobile:ProdID }
+find:
+    path:     /find/{id}
+    defaults: { _controller: HeavenTNBundle:Mobile:find }
+findUser:
+    path:     /findUser/{id}
+    defaults: { _controller: HeavenTNBundle:Mobile:findUser }
+findUserCommande:
+    path:     /findUsercommande/{id}
+    defaults: { _controller: HeavenTNBundle:Mobile:findUserCommande }
+Modifierquantite:
+    path:     /Prodm
+    defaults: { _controller: HeavenTNBundle:Mobile:Modifierqauntite }
+ajouter_promotion:
+    path:     /ajouterPromotion/{id}
+    defaults: { _controller: HeavenTNBundle:Promotion:ajouterPromotion }
+
+modifier_promotion:
+    path:     /modifierPromotion/{id}
+    defaults: { _controller: HeavenTNBundle:Promotion:modifierPromotion }
+
+supprimer_promotion:
+    path:     /supprimerPromotion/{id}
+    defaults: { _controller: HeavenTNBundle:Promotion:supprimerPromotion }
+
+afficher_promotion:
+    path:     /afficherPromotion
+    defaults: { _controller: HeavenTNBundle:Promotion:afficherPromotion }
+addToPromotion:
+    path:     /addToPromotion/{id}
+    defaults: { _controller: HeavenTNBundle:Promotion:addToPromotion }
+
+
+demandePub:
+    path:     /demandePub
+    defaults: { _controller: HeavenTNBundle:PubBack:index  }
+    methods:  [GET, POST]
+
+validPub:
+    path:     /{idPub}/validePub
+    defaults: { _controller: HeavenTNBundle:PubBack:valider }
+    methods:  [GET, POST]
+
+refusPub:
+    path:     /{idPub}/refusPub
+    defaults: { _controller: HeavenTNBundle:PubBack:refuser }
+    methods:  [GET, POST]
+
+app_reservation:
+    resource: "@HeavenTNBundle/Resources/config/routing/reservation.yml"
+    prefix:   /reservation
+
+reservationPub:
+    path:     /reservationPub
+    defaults: { _controller: HeavenTNBundle:PubBack:indexRes  }
+    methods:  [GET, POST]

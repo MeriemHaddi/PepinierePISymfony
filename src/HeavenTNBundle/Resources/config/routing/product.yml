@@ -1,0 +1,36 @@
+product_index:
+    path:     /
+    defaults: { _controller: "HeavenTNBundle:Product:index" }
+    methods:  GET
+
+product_show:
+    path:     /{idproduct}/show
+    defaults: { _controller: "HeavenTNBundle:Product:show" }
+    methods:  [GET, POST]
+
+productfront_index:
+    path:     /front
+    defaults: { _controller: "HeavenTNBundle:Product:indexfront" }
+    methods:  GET
+
+product_new:
+    path:     /new
+    defaults: { _controller: "HeavenTNBundle:Product:new" }
+    methods:  [GET, POST]
+
+product_edit:
+    path:     /{idproduct}/edit
+    defaults: { _controller: "HeavenTNBundle:Product:edit" }
+    methods:  [GET, POST]
+
+product_delete:
+    path:     /{idproduct}/delete
+    defaults: { _controller: "HeavenTNBundle:Product:delete" }
+    methods:  DELETE
+
+product_sort:
+    path:     /sort/{sort}
+    defaults: { _controller: "HeavenTNBundle:Product:sort" }
+    methods:  GET
+
+

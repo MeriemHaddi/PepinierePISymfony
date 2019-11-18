@@ -1,0 +1,121 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+    <div id="checkout-cart" class="container">
+
+        <div class="row">
+            <div id="content" class="col-sm-12">
+
+                <form action="https://demo.templatetrip.com/Opencart/OPC06/OPC190_nursery/OPC01/index.php?route=checkout/cart/edit" method="post" enctype="multipart/form-data" class="cart-form">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td class="text-center">ID</td>
+                                <td class="text-center">Image</td>
+                                <td class="text-left">Product Name</td>
+                                <td class="text-left">Model</td>
+                                <td class="text-left">Quantity</td>
+                                <td class="text-left">Status</td>
+                                <td class="text-left">Action</td>
+                            </tr>
+                            </thead>
+                            {% for cart in carts  %}
+
+                                <tbody>
+                                <tr>
+                                    <td class="text-left">{{ cart.id }}"</td>
+
+                                    <td class="text-center">
+                                        <img src="{{ cart.product.productimage }}" style="width: 80px;     height: 95px" alt="aspetur autodit autfugit" title="aspetur autodit autfugit" class="img-thumbnail"></a> </td>
+                                    <td class="text-left">{{cart.product.productname }}</a>
+                                        <br>
+                                    <td class="text-left">{{ cart.product.category }}</td>
+
+                                    <td class="text-right unit-price">{{ cart.quantity }}</td>
+
+                                    <td class="text-right unit-price">{{ cart.status }}</td>
+
+                                    <td class="text-left"><div class="cart_input_block input-group btn-block" style="max-width: 200px;">
+                                            <a id="remove" href="{{ path('_cupcakes_cart_remove',{id:cart.id }) }}"> Remove</a>
+
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+
+
+                    <div class="col-sm-4 sub-total-table">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <td class="text-right heading-title"><strong>Total:</strong></td>
+                                <td class="text-right total-amount" id="total">{{ price }}</td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{ asset('jquery.js') }}"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('[id="remove"]').on('click', function(e) {
+                location.reload();
+                var href = this.href;
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: href,
+                    dataType: 'json',
+                    success: function(json) {
+
+                        console.log(json);
+                    }
+                });
+            });
+        });
+
+        function addAction(ok)
+        {
+
+            var plus=$('#q'+ok).val();
+            $('#q'+ok).val(parseInt(plus)+1);
+            var quantity=parseInt($('#q'+ok).val());
+            var price1 =parseFloat($('#price'+ok).text());
+
+            $('#total'+ok).html((quantity*price1).toFixed(2));
+            var total =parseFloat($('#total').text())+price1;
+            $('#total').html(total.toFixed(2));
+        }
+
+        function sousAction(id)
+        {
+
+            var moin=$('#q'+id).val();
+            if(((parseInt(moin) - 1)>0)) {
+                $('#q'+id).val(parseInt(moin) - 1);
+                var quantity=parseInt($('#q'+id).val());
+                var price1 =parseFloat($('#price'+id).text());
+                $('#total'+id).html((quantity*price1).toFixed(2));
+                var total =parseFloat($('#total').text())-price1;
+                $('#total').html(total.toFixed(2));
+            }
+
+        }
+
+
+
+    </script>
+{% endblock %}
+

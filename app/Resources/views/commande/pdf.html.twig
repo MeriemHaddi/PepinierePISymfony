@@ -1,0 +1,38 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<div class="col-md-9" class="chartjs-wrapper"><canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
+    <script>
+        var dataSQL=[];
+        var dataNames=[];
+    </script>
+    <h2 align="center">Facture</h2>
+    <h2 align="center">Nom et prenom: {{ app.user.firstname }} {{ app.user.lastname }}</h2>
+
+    <table border="4" align="center" >
+
+        <tr>
+            <th>ID Commande</th>
+            <th>Qantity</th>
+            <th>Total To PAY</th>
+            <th>Product</th>
+            <th>Date</th>
+        </tr>
+    {% for commande in commandes %}
+        {% if app.user.id == commande.user.id %}
+            <tr>
+            <td>{{ commande.id }}</td>
+            <td>{{ commande.quantity }}</td>
+            <td>{{ commande.price }}</td>
+                <td>{{ commande.products }}</td>
+                <td>{{ commande.date }}</td>
+
+            </tr>
+
+        {% endif %}
+    {% endfor %}
+    </table>
+
+
+
+
+</div>
